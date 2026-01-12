@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Email Verification</title>
+    <style>
+      .button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 16px 0;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Hello {{name}},</h2>
+    <p>Thank you for registering with {{appName}}. Please verify your email address to activate your account.</p>
+    <a href="{{verificationLink}}" class="button">Verify Email</a>
+    <p>If the button above does not work, copy and paste the following link into your browser:</p>
+    <p>{{verificationLink}}</p>
+    <hr>
+    <p>If you did not create an account, you can ignore this email.</p>
+    <p>Best regards,<br/>The {{appName}} Team</p>
+  </body>
+</html>
