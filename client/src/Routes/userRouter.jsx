@@ -5,7 +5,8 @@ import Signup from "../components/Signup.jsx";
 import Resetpassword from "../components/Resetpassword.jsx";
 import About from "../components/About.jsx";
 import Contactus from "../components/Contactus.jsx";  
-
+import Verify from "../components/Verify.jsx";
+import Verifyotp from "../components/Verifyotp.jsx";
 
 
 const userRouter = createBrowserRouter([
@@ -35,6 +36,15 @@ const userRouter = createBrowserRouter([
   {
     path: '/contact',
     element: <Contactus />
+  },
+
+   {
+    path: '/verify',
+    element: <Verify />
+  },
+  {
+    path: '/verifyotp',
+    element: <Verifyotp />
   }
   // Add more routes here...
 ]);

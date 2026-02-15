@@ -6,13 +6,12 @@ const router = express.Router();
 
 // importing user model route handler
 router.post('/register', registerUser );
-router.post('/verify',verification );
+router.get('/verify',verification );
 router.post('/login', loginUser );
 router.post('/logout',isAuthenticated, logoutUser );
 router.post('/forgot', forgotpassword  );
-router.post('/forgot', forgotpassword  );
-router.post('/verifyotp/:email', verifyOtp);
-router.post('/reset/:email', changePassword );
+router.post('/verifyotp', verifyOtp);
+router.post('/reset', changePassword );
 
 export default router;
 

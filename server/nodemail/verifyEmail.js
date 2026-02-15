@@ -12,14 +12,14 @@ import nodemailer from 'nodemailer';
  
  dotenv.config();
  
-
+ 
 
  export const verifyEmail = async (token,email) => {
 
      const  emailTemplateSource = fs.readFileSync(path.join(__dirname, '../emailTemplate/verify-email.hbs'), 'utf8');
      const template = handlerbars.compile(emailTemplateSource);
-     const verificationLink = `http://localhost:3000/verify-email?token=${token}`;
-     const htmlToSend = template({verificationLink, name: email, appName: "YourAppName"});  
+     const verificationLink = `http://localhost:8080/api/verify?token=${token}`;
+     const htmlToSend = template({verificationLink, name: email, appName: "Authsystem"});  
     if (!token) {
         throw new Error('No token provided');
     }
