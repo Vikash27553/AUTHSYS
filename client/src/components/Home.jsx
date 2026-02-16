@@ -16,7 +16,7 @@ const handlelogout = async (e) => {
     console.log("Token sent to logout:", token); 
 
     await axios.post(
-      "http://localhost:8080/api/logout", 
+      `${import.meta.env.VITE_API_URL}/api/logout`,
       {}, 
       { 
         headers: { 

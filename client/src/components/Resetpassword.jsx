@@ -18,7 +18,7 @@ function Resetpassword() {
  const handleResetPassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/api/reset", { email, newPassword, confirmPassword });
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reset`, { email, newPassword, confirmPassword });
       alert(response.data.message || "Password reset successfully!");
         navigate('/login'); // Redirect to login after successful password reset
 

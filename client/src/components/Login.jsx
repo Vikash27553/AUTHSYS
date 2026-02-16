@@ -38,7 +38,7 @@ function Login() {
     e.preventDefault();
     try {
 
-       const response = await axios.post("http://localhost:8080/api/login", { email, password }, { headers: { 'Content-Type': 'application/json' } });
+       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, { email, password }, { headers: { 'Content-Type': 'application/json' } });
     
             console.log("Login successful:", response.data);
             localStorage.setItem("accessToken", response.data.accessToken);

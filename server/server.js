@@ -18,7 +18,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173',  // Your React app
+  origin: [process.env.VITE_API_URL || "http://localhost:5173", "https://authsys-ui.onrender.com"],  // Your React app
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));  

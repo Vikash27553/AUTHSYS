@@ -17,7 +17,7 @@ function Verify() {
     const verifyEmail = async () => {
       try {
         // Use GET with params (matches your backend req.query.token pattern from memories) [cite:9]
-              const response = await axios.get('http://localhost:8080/api/verify', 
+              const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/verify`, 
           { token },  // Second arg = body data → req.body = { token: '...' }
           {           // Third arg = config (optional)
             headers: { 'Content-Type': 'application/json' }

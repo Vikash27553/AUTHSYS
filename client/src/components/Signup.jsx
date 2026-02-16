@@ -25,7 +25,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   try {
     // Send plain object directly - no JSON.stringify needed
-    const response = await axios.post("http://localhost:8080/api/register", 
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, 
       { name, email, password },  // 2nd param: request body (plain object)
       { 
         headers: { 'Content-Type': 'application/json' }  // 3rd param: config object
