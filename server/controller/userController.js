@@ -2,7 +2,7 @@ import { User } from "../model/Usermodel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { verifyEmail } from "../nodemail/verifyEmail.js";
-import Session from "../model/sessionModel.js";
+import Session from "../model/SessionModel.js";
 import { sendotpmail } from "../nodemail/SendotpMail.js";
 
 
