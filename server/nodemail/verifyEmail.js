@@ -26,8 +26,8 @@ import nodemailer from 'nodemailer';
 
  const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    port: 587,
+    secure: false, // true for 465, false for other ports
     auth:{
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASSWORD
@@ -36,20 +36,21 @@ import nodemailer from 'nodemailer';
  
 
 
-const info = {
+(async () => {
+  const info = {
     from: process.env.MAIL_USER,
-    to:email,
+    to: email,
     subject: "Verify your email",
     text: "Hello, please verify your email",
-    html:htmlToSend,
-}
+    html: htmlToSend,
+  };
 
-    transporter.sendMail(info, (err, res)=> {
+  try {
+    const res = await transporter.sendMail(info);
+    console.log("Email sent successfully", res);
+  } catch (err) {
+    console.log("Error occurred", err);
+  }
+})();
 
-        if(err){
-            console.log("Error occurred", err);
-        }
-        console.log("Email sent successfully", res);
-
- })
 }
