@@ -79,7 +79,7 @@ export const verification = async (req, res) => {
 
     // Respond with 'user' (the data), not 'User' (the Model)
     // Correct way for cross-origin (Backend -> Frontend) 
-       res.redirect("http://localhost:5173/login?isVerfied=true");
+       res.redirect(`${process.env.FRONTEND_URL}/login?isVerfied=true`);
     // ;
 
   } catch (error) {
