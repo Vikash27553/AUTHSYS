@@ -28,8 +28,8 @@ try {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    port: 465,
+    secure: true,
     requireTLS: true,
     logger: true, // Enable logging for debugging
     debug: true,  // Show detailed debug output
