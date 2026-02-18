@@ -30,10 +30,14 @@ export const registerUser = async (req, res) => {
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
-
-    verifyEmail(token, email);
+    try {
+       verifyEmail(token, email);
     newUser.token = token;
     newUser.save();
+    } catch (error) {
+      console.error("Error sending verification email:", error);
+    }
+   
 
     res.status(201).json({ message: "User registered successfully", newUser });
   } catch (error) {

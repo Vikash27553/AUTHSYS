@@ -26,9 +26,9 @@ import nodemailer from 'nodemailer';
 
  const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-     requireTLS: true, // true for 465, false for other ports
+    port: 465,
+    secure: true,
+      // true for 465, false for other ports
     auth:{
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASSWORD
@@ -38,7 +38,7 @@ import nodemailer from 'nodemailer';
  
 
 
-(async () => {
+
   const info = {
     from: process.env.MAIL_USER,
     to: email,
@@ -55,6 +55,6 @@ import nodemailer from 'nodemailer';
     console.error("Nodemailer Error:", err);
     throw err; // Ensure the caller knows it failed
   }
-})();
+
 
 }
