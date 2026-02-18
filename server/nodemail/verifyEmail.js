@@ -42,8 +42,8 @@ try {
 
   const info = {
     from: process.env.MAIL_USER,
-    to: {email},
-    subject: `Verify your ${email} email for Authsystem`,
+    to: email,
+    subject: "Verify your email for Authsystem",
     text: "Hello, please verify your email",
     html: htmlToSend,
   };
