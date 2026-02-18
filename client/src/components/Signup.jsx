@@ -24,7 +24,7 @@ const navigate = useNavigate();
 const handleSubmit = async (e) => {
   e.preventDefault();
   try {
-    const response = await axios.post(`${ import.meta.env.VITE_API_URL||import.meta.env.VITE_LOCAL_API_URL}/api/register`,
+    const response = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/api/register`,
     // Send plain object directly - no JSON.stringify needed
       { name, email, password },  // 2nd param: request body (plain object)
       { 

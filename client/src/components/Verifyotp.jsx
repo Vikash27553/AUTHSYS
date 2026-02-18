@@ -20,7 +20,7 @@ function Verifyotp() {
     const handleverifyotp = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_URL||import.meta.env.VITE_LOCAL_API_URL}/api/verifyotp`, { email, otp }, { headers: { 'Content-Type': 'application/json' } });
+            const response = await axios.post(`${import.meta.env.VITE_LOCAL_API_URL}/api/verifyotp`, { email, otp }, { headers: { 'Content-Type': 'application/json' } });
            toast.success(response.data.message || "OTP verified successfully!");
             // Optionally, you can show a success message or redirect the user after successful OTP verification
             

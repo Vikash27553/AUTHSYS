@@ -20,10 +20,11 @@ export const verifyEmail = async (token, email) => {
     try {
         const emailTemplateSource = fs.readFileSync(path.join(__dirname, '../emailTemplate/verify-email.hbs'), 'utf8');
         const template = handlebars.compile(emailTemplateSource);
-        const verificationLink = `${process.env.FRONTEND_URL}/api/verify?token=${token}`;
-        const htmlToSend = template({ verificationLink, name: email, appName: "Authsystem" });
+        const verificationLink = `${process.env.LOCAL_FRONTEND_URL}/verify?token=${token}`;
+        const htmlToSend = template({ verificationLink, name: email.split('@')[0], email, appName: "Authsystem" });
 
         const transporter = nodemailer.createTransport({
+          service: 'gmail',
             host: "smtp.gmail.com",
             port: 465,
             secure: true, // Use true for port 465
@@ -32,9 +33,7 @@ export const verifyEmail = async (token, email) => {
                 pass: process.env.MAIL_PASSWORD
             },
             // Increased timeouts for Render stability
-            connectionTimeout: 15000, 
-            greetingTimeout: 15000,   
-            socketTimeout: 15000      
+             connectionTimeout: 10000, // 10 seconds      
         });
 
         const info = {

@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: [process.env.FRONTEND_URL,process.env.LOCAL_FRONTEND_URL],  // Your React app
+  origin: [process.env.LOCAL_FRONTEND_URL],  // Your React app
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));  
