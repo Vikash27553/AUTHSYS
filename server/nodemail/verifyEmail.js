@@ -23,8 +23,9 @@ import nodemailer from 'nodemailer';
     if (!token) {
         throw new Error('No token provided');
     }
-
- const transporter = nodemailer.createTransport({
+try {
+  
+  const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
     secure: true,
@@ -33,7 +34,7 @@ import nodemailer from 'nodemailer';
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASSWORD
     },
-    connectionTimeout: 10000, // 10 seconds
+          connectionTimeout: 10000, // 10 seconds
 });
  
 
@@ -41,20 +42,27 @@ import nodemailer from 'nodemailer';
 
   const info = {
     from: process.env.MAIL_USER,
-    to: email,
-    subject: "Verify your email",
+    to: {email},
+    subject: `Verify your ${email} email for Authsystem`,
     text: "Hello, please verify your email",
     html: htmlToSend,
   };
 
-  try {
-    const res = await transporter.sendMail(info);
-    console.log("Email sent successfully", res.messageId);
-    return res; 
-  } catch (err) {
-    console.error("Nodemailer Error:", err);
-    throw err; // Ensure the caller knows it failed
-  }
+  await new Promise((resolve, reject) => {
+    transporter.sendMail(info, (error, info) => {
+      if (error) {
+        reject(error);
+      } else {
+        console.log("Email sent successfully", info.messageId);
+        resolve(info);
+      }
+    });
+  });
+} catch (error) {
+  console.error("Error sending verification email:", error);
+  throw error; // Re-raise the error so the caller knows it failed
+}
+ 
 
 
 }
