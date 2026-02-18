@@ -47,9 +47,11 @@ import nodemailer from 'nodemailer';
 
   try {
     const res = await transporter.sendMail(info);
-    console.log("Email sent successfully", res);
+    console.log("Email sent successfully", res.messageId);
+    return res; 
   } catch (err) {
-    console.log("Error occurred", err);
+    console.error("Nodemailer Error:", err);
+    throw err; // Ensure the caller knows it failed
   }
 })();
 
