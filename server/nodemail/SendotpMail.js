@@ -4,6 +4,7 @@ dotenv.config();
 
 export const sendotpmail = async (email, otp) => {
   const transporter = nodemailer.createTransport({
+    service: 'gmail',
     host: "smtp.gmail.com",
     port: 587,           // Use port 587 for TLS
     secure: false,       // false for TLS, true for port 465
