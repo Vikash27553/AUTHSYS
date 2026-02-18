@@ -39,8 +39,7 @@ try {
         pass: process.env.MAIL_PASSWORD
     },
           connectionTimeout: 50000,
-          greetingTimeout: 20000,   // Wait for the server to say hello
-          socketTimeout: 20000,     // Wait for data to move // 10 seconds
+              // Wait for data to move // 10 seconds
 });
  
 
