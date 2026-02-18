@@ -26,12 +26,12 @@ import nodemailer from 'nodemailer';
 try {
   
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 443,
+    host: "gmail",
+    port: 587,
     secure: false,
-    requireTLS: true,
-    logger: true, // Enable logging for debugging
-    debug: true,  // Show detailed debug output
+    // requireTLS: true,
+    // logger: true, // Enable logging for debugging
+    // debug: true,  // Show detailed debug output
      // true for 465, false for other ports
       // true for 465, false for other ports
     auth:{
