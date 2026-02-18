@@ -32,6 +32,7 @@ import nodemailer from 'nodemailer';
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASSWORD
     },
+    connectionTimeout: 10000, // 10 seconds
 });
  
 
