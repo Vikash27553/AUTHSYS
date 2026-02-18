@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: 'https://authsys-6d9x.onrender.com',  // Your React app
+  origin: process.env.LOCAL_FRONTEND_URL,  // Your React app
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));  

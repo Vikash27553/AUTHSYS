@@ -31,7 +31,7 @@ const handleSubmit = async (e) => {
         headers: { 'Content-Type': 'application/json' }  // 3rd param: config object
       }
     );
-      showtoastmsg();
+    showtoastmsg();
     console.log("Signup successful:", response.data);
     setName('');
     setEmail('');
