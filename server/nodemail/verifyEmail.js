@@ -18,7 +18,7 @@ import nodemailer from 'nodemailer';
 
      const  emailTemplateSource = fs.readFileSync(path.join(__dirname, '../emailTemplate/verify-email.hbs'), 'utf8');
      const template = handlerbars.compile(emailTemplateSource);
-     const verificationLink = `${process.env.FRONTEND_URL}/api/verify?token=${token}`;
+     const verificationLink = `${process.env.FRONTEND_URL || process.env.LOCAL_FRONTEND_URL}/api/verify?token=${token}`;
      const htmlToSend = template({verificationLink, name: email, appName: "Authsystem"});  
     if (!token) {
         throw new Error('No token provided');

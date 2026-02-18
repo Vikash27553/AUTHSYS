@@ -17,8 +17,9 @@ const app = express();
 
 
 app.use(express.json());
+
 app.use(cors({
-  origin: [process.env.FRONTEND_URL],  // Your React app
+  origin: [process.env.FRONTEND_URL,process.env.LOCAL_FRONTEND_URL],  // Your React app
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));  
@@ -43,10 +44,10 @@ try {
 
 
 
-app.get('/' ,  (req, res) => {
+app.get('/' , (req, res) => {
   console.log("Hello, this is auth system");
   res.status(201).send("Hello, this is auth system");
 });
 
-app.use('/api', userRoutes);
+app.use('/api',userRoutes);
 

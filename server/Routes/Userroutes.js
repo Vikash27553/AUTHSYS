@@ -1,8 +1,9 @@
 import express from 'express';
 import {registerUser,forgotpassword,changePassword, verification, loginUser,logoutUser, verifyOtp } from  '../controller/userController.js'
 import { isAuthenticated } from '../middleware/isAuthenticated.js';
-// import { userSchema } from '../Validators/userValidate.js';
+
 const router = express.Router();
+
 
 // importing user model route handler
 router.post('/register', registerUser );
