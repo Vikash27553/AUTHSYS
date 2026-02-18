@@ -38,7 +38,9 @@ try {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASSWORD
     },
-          connectionTimeout: 10000, // 10 seconds
+          connectionTimeout: 50000,
+          greetingTimeout: 20000,   // Wait for the server to say hello
+          socketTimeout: 20000,     // Wait for data to move // 10 seconds
 });
  
 
