@@ -31,9 +31,11 @@ export const registerUser = async (req, res) => {
       expiresIn: "1h",
     });
     
-   await  verifyEmail(token, email);
     newUser.token = token;
-     newUser.save();
+   await  verifyEmail(token, email);
+
+    await  newUser.save();
+
 
     res.status(201).json({ message: "User registered successfully", newUser });
     
