@@ -11,7 +11,7 @@ dotenv.config();
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 
-const PORT = process.env.PORT || 2000;
+const PORT = process.env.PORT||2000;
 const MONGODB_URL = process.env.MONGODB_URL;  
 const app = express();
 
@@ -19,7 +19,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-  origin: process.env.lOCAL_FRONTEND_URL,  // Your React app
+  origin: [process.env.lOCAL_FRONTEND_URL],  // Your React app
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));  

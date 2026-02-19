@@ -49,7 +49,7 @@ export const verifyEmail = async (token, email) => {
         // // Nodemailer supports promises, no need for manual 'new Promise' wrapper
         // const result = await transporter.sendMail(info);
         const { data, error } = await resend.emails.send({
-    from: 'Authsystem <no-reply@yourdomain.com>', // Use verified domain in production
+    from: 'AUTHSYS <onboarding@resend.dev>', // Use verified domain in production
     to: email,
     subject: "Verify your email for Authsystem",
     text: `Hello, please verify your email: ${verificationLink}`,
