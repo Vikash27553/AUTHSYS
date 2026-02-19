@@ -5,6 +5,10 @@ import axios from "axios";
 
 
 function Home() {
+const handleAccount = (e) => {
+  e.preventDefault();
+  window.location.href = "/signup";
+}
 
 
 const handlelogout = async (e) => {
@@ -55,10 +59,13 @@ const handlelogout = async (e) => {
             </li>
           </ul>
 
-
+            <div className="flex items-center justify-center gap-5 mt-5">
+          <button onClick={handleAccount} className="w-30 h-10 bg-yellow-600 text to-black font-bold mx-2 px-4 cursor-pointer hover:bg-yellow-300 rounded-4xl "> Create Account</button>
+        </div>
             <div className="flex items-center justify-center gap-5 mt-5">
           <button onClick={handlelogout} className="w-30 h-10 bg-yellow-600 text to-black font-bold mx-2 px-4 cursor-pointer hover:bg-yellow-300 rounded-4xl "> Logout</button>
         </div>
+
         </nav>
 
       
