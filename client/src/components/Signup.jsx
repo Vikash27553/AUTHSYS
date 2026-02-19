@@ -13,6 +13,9 @@ const[email, setEmail] =useState('');
 const[password,setPassword] =useState('');
 
 const showtoastmsg =()=>{
+  toast.info("Signup successful", {
+    position: "top-right",
+  });
   toast.success("Verify your email to continue ", {
     position: "top-right",
 
@@ -36,7 +39,9 @@ const handleSubmit = async (e) => {
     setName('');
     setEmail('');
     setPassword('');
-    navigate('/verify'); // Redirect to login page after successful signup
+    
+    navigate('/login');
+     // Redirect to login page after successful signup
   } catch (error) {
 
     console.error("Error during signup:", error.response?.data || error.message);

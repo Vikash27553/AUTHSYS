@@ -14,6 +14,7 @@ function Verify() {
       return;
     }     
 
+
     const verifyEmail = async () => {
       try {
         // Use GET with params (matches your backend req.query.token pattern from memories) [cite:9]
@@ -27,7 +28,8 @@ function Verify() {
 
         console.log('Email verification successful:', response.data);
         setStatus('success');
-        setTimeout(() => navigate('/login')); // Auto-redirect after success [cite:1]
+        if(status === 'success') {
+        setTimeout(() => navigate('/login'), 2000);} // Auto-redirect after success [cite:1]
       } catch (error) {
         console.error('Error during email verification:', error.response?.data || error.message);
         setStatus('error');
@@ -38,6 +40,9 @@ function Verify() {
   }, [token]); // Fixed: Proper dependency array (no extra }, [] syntax); include navigate to satisfy ESLint [web:13][web:16]
 
   const handleOk = () => {
+    if (status === 'success') {
+      navigate('/login');
+    }
     navigate('/login');
   };
 
