@@ -9,7 +9,7 @@ import Verify from "../components/Verify.jsx";
 import Verifyotp from "../components/Verifyotp.jsx";
 
 
-const userRouter = createBrowserRouter([
+const UserRouter = createBrowserRouter([
   {
     path: "/",
     element: <Home />
@@ -49,4 +49,4 @@ const userRouter = createBrowserRouter([
   // Add more routes here...
 ]);
 
-export { userRouter };
+export { UserRouter };

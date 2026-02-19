@@ -12,13 +12,13 @@ function Verify() {
     if (!token) {
       setStatus('error');
       return;
-    }
+    }     
 
     const verifyEmail = async () => {
       try {
         // Use GET with params (matches your backend req.query.token pattern from memories) [cite:9]
               const response = await axios.get(`${import.meta.env.VITE_LOCAL_API_URL}/api/verify`, 
-          { params: { token } },  // Second arg = body data → req.body = 
+       {params: {token}}  ,  // Second arg = body data → req.body = 
           // { token: '...' }
           {           // Third arg = config (optional)
             headers: { 'Content-Type': 'application/json' }
