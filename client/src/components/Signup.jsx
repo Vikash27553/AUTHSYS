@@ -69,7 +69,7 @@ return (
 
         <div>
           <label className='block text-grey-700 font-semibold mb-2' >Enter Password </label>
-          <input onChange={(e)=> setPassword(e.target.value)} type="password " value={password} id="userPassword" placeholder="Enter Password"></input>
+          <input onChange={(e)=> setPassword(e.target.value)} type="password" value={password} id="userPassword" placeholder="Enter Password" ></input>
         </div>
 
         {/*signup button*/}
