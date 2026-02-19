@@ -38,7 +38,11 @@ const handleSubmit = async (e) => {
     setPassword('');
     navigate('/verify'); // Redirect to login page after successful signup
   } catch (error) {
+
     console.error("Error during signup:", error.response?.data || error.message);
+    toast.error(error.response?.data?.message || "Signup failed. Please try again.", {
+      position: "top-right",
+    });
   }
 };
 
