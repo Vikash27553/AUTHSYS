@@ -32,6 +32,7 @@ const handlelogout = async (e) => {
     // 2. Clean up both tokens
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
+   
     window.location.href = "/login";
     console.log("Logout successful");
   } catch (error) {
@@ -41,8 +42,8 @@ const handlelogout = async (e) => {
 
   return (
     <div>
-      <header>
-        <nav className="mx-auto flex bg-gradient-to-r from-blue-500 to-purple-600 items-center  justify-around p-4 gap-10 relative w-full">
+      <header className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 ">
+        <nav className="mx-auto min-w-full  flex bg-gradient-to-r from-blue-500 to-purple-600 items-center  justify-around p-4 gap-10 relative w-full">
           {/* <img src={logo} className='h-10  w-10 left-15 top-2 z-10  absolute'/> */}
           <ul className="flex  text-white  gap-10">
             <li>
@@ -59,12 +60,21 @@ const handlelogout = async (e) => {
             </li>
           </ul>
 
-            <div className="flex items-center justify-center gap-5 mt-5">
-          <button onClick={handleAccount} className="w-30 h-10 bg-yellow-600 text to-black font-bold mx-2 px-4 cursor-pointer hover:bg-yellow-300 rounded-4xl "> Create Account</button>
-        </div>
-            <div className="flex items-center justify-center gap-5 mt-5">
-          <button onClick={handlelogout} className="w-30 h-10 bg-yellow-600 text to-black font-bold mx-2 px-4 cursor-pointer hover:bg-yellow-300 rounded-4xl "> Logout</button>
-        </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 px-4">
+  <button 
+    onClick={handleAccount} 
+    className="w-full sm:w-auto min-w-[160px] h-11 bg-yellow-600 text-black font-bold py-2 px-6 cursor-pointer hover:bg-yellow-500 transition-colors rounded-full shadow-md active:scale-95"
+  >
+    Create Account
+  </button>
+  
+  <button 
+    onClick={handlelogout} 
+    className="w-full sm:w-auto min-w-[120px] h-11 border-2 border-yellow-600 text-yellow-700 sm:bg-yellow-600 sm:text-black font-bold py-2 px-6 cursor-pointer hover:bg-yellow-500 sm:border-none transition-colors rounded-full shadow-sm active:scale-95"
+  >
+    Logout
+  </button>
+</div>
 
         </nav>
 
