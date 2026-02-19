@@ -80,65 +80,74 @@ function Login() {
 
 
   return (
-    <div className=" min-h-screen  w-full h-auto bg-gradient-to-br from-blue-500 to-purple-600 flex justify-center items-center p-4">
-      <div className="  max-w-sm w-full bg-white rounded-2xl p-8 space-y-8">
-        <form onSubmit={handleSubmit}>
-          <div className="text-center mb-4">
-            <div>
-              <img src={logo1} alt="Logo" className=" h-20 w-20 mx-auto mb-4" />
-            </div>
-            <h1 className=" text-3xl text-green-500 font-bold mb-2 space-y-6">
-              {" "}
-              Login page{" "}
-            </h1>
+   <div className="min-h-screen w-full bg-gradient-to-br from-blue-600 to-purple-700 flex justify-center items-center p-4 sm:p-6">
+      
+      {/* Main Card */}
+      <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-6 sm:p-10 transition-all">
+        
+        {/* Header Section */}
+        <div className="text-center mb-8">
+          <img src={logo1} alt="Logo" className="h-20 w-20 mx-auto mb-4 object-contain" />
+          <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">
+            Welcome Back
+          </h1>
+          <p className="text-gray-500 mt-2">Please enter your details</p>
+        </div>
+
+        {/* Form Section */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          
+          {/* Email Field */}
+          <div>
+            <label className="block text-gray-700 font-semibold mb-2 ml-1">
+              Email Address
+            </label>
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              value={email}
+              placeholder="name@company.com"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all bg-gray-50"
+              required
+            />
           </div>
 
-          <form>
-            <div>
-              <label className=" block text-grey-700  font-bold text-xl  mb-2">
-                Email
-              </label>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                value={email}
-                id=" useremail"
-                placeholder="Enter Email Address"
-                required
-              ></input>
-            </div>
+          {/* Password Field */}
+          <div>
+            <label className="block text-gray-700 font-semibold mb-2 ml-1">
+              Password
+            </label>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              value={password}
+              placeholder="••••••••"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all bg-gray-50"
+              required
+            />
+          </div>
 
-            <div>
-              <label className=" block text-grey-700  font-bold text-xl mb-2">
-                Password
-              </label>
-              <input
-                onChange={(e) => setPassword(e.target.value)}
-                type="password"
-                value={password}
-                id=" userpassword"
-                placeholder="Enter Password "
-                required
-              ></input>
-            </div>
+          {/* Login Button */}
+          <button 
+            type="submit" 
+            className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded-xl hover:bg-green-600 shadow-lg shadow-green-200 active:scale-[0.98] transition-all cursor-pointer text-lg"
+          >
+            Sign In
+          </button>
 
-            <button onClick={handleSubmit} className=" w-full text-xl  rounded-xl bg-green-200 mt-2 mb-2 hover:bg-green-500  cursor-pointer">
-              Login
+          {/* Footer Links */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-2 text-sm">
+            <p className="text-gray-600">
+              New here? <Link to="/signup" className="text-red-500 font-bold hover:underline">Create Account</Link>
+            </p>
+            <button 
+              type="button"
+              onClick={handleforget} 
+              className="text-blue-600 font-semibold hover:text-blue-800 transition cursor-pointer"
+            >
+              Forgot Password?
             </button>
-
-            <div className=" flex justify-evenly items-center gap-5">
-              <p>
-                <Link to="/signup">
-                  New user <span className=" text-red-500">signup ? </span>
-                </Link>
-              </p>
-              <p>
-                
-                 <button onClick={handleforget}> <span className=" text-blue-500 cursor-pointer">Forget Password ? </span> </button>
-                
-              </p>
-            </div>
-          </form>
+          </div>
         </form>
       </div>
     </div>
