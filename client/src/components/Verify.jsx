@@ -27,7 +27,7 @@ function Verify() {
 
         console.log('Email verification successful:', response.data);
         setStatus('success');
-        setTimeout(() => navigate('/login'), 2000); // Auto-redirect after success [cite:1]
+        setTimeout(() => navigate('/login')); // Auto-redirect after success [cite:1]
       } catch (error) {
         console.error('Error during email verification:', error.response?.data || error.message);
         setStatus('error');
