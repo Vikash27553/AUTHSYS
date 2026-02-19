@@ -69,14 +69,14 @@ function Home() {
                 {!isLoggedIn && (
                   <button 
                     onClick={handleAccount}
-                    className="w-full sm:w-auto bg-yellow-500 text-black font-bold py-2 px-6 rounded-full hover:bg-yellow-400 active:scale-95 transition shadow-md"
+                    className="w-full sm:w-auto bg-yellow-500 text-black font-bold py-2 px-6 rounded-full hover:bg-yellow-400 active:scale-95 transition shadow-md cursor-pointer"
                   >
                     Create Account
                   </button>
                 )}
                 <button 
                   onClick={handlelogout}
-                  className={`w-full sm:w-auto font-bold py-2 px-6 rounded-full active:scale-95 transition shadow-md ${
+                  className={`w-full sm:w-auto font-bold py-2 px-6 rounded-full active:scale-95 transition shadow-md cursor-pointer ${
                     isLoggedIn ? "bg-red-500 text-white hover:bg-red-600" : "bg-white/20 text-white hover:bg-white/30"
                   }`}
                 >
