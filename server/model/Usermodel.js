@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password:{type:String , required: true},
     isVerfied:{type:Boolean, default: false},
     isLoggedin:{type:Boolean, default:false},
-    token:{type:String,default: null},
+    token:{type:String,default: null, unique:true},
     otp:{type:String, default:null},
     otp_expiry:{type:Date, default:null}
 
