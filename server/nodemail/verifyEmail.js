@@ -22,8 +22,8 @@ export const verifyEmail = async (token, email) => {
     try {
         const emailTemplateSource = fs.readFileSync(path.join(__dirname, '../emailTemplate/verify-email.hbs'), 'utf8');
         const template = handlebars.compile(emailTemplateSource);
-        const verificationLink = `${process.env.lOCAL_FRONTEND_URL}/verify?token=${token}`;
-        const htmlToSend = template({ verificationLink, name: email.split('@')[0], email, appName: "Authsystem" });
+        const verificationLink = `${process.env.LOCAL_FRONTEND_URL}/verify?token=${token}`;
+        const htmlToSend = template({ verificationLink, name: email, appName: "Authsystem" });
 
         // const transporter = nodemailer.createTransport({
         //   service: 'gmail',
@@ -48,8 +48,9 @@ export const verifyEmail = async (token, email) => {
 
         // // Nodemailer supports promises, no need for manual 'new Promise' wrapper
         // const result = await transporter.sendMail(info);
-        const { data, error } = await resend.emails.send({
-    from: 'AUTHSYS <onboarding@resend.dev>', // Use verified domain in production
+
+const { data, error } = await resend.emails.send({
+    from: 'AUTHSYS <onboarding@resend.dev>',
     to: email,
     subject: "Verify your email for Authsystem",
     text: `Hello, please verify your email: ${verificationLink}`,
@@ -57,12 +58,13 @@ export const verifyEmail = async (token, email) => {
 });
 
 if (error) {
+    console.error("Resend Error:", error);
     throw new Error(error.message);
 }
 
-const result = data; // Keeps your return variable name consistent 
-        console.log("Email sent successfully", result.id);
-        return result;
+// Fixed line: use optional chaining or check if data exists
+console.log("Email sent successfully", data?.id); 
+return data;
 
     } catch (error) {
         console.error("Error sending verification email:", error);

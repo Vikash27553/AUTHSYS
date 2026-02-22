@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'; 
-import { data, useNavigate, useSearchParams } from 'react-router-dom';
+import {  useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 function Verify() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const token = searchParams.get('token'); // Fixed: Remove invalid 'any mistake' comment; TypeScript infers string | null [web:12]
+  const token = searchParams.get('token');
+  2 // Fixed: Remove invalid 'any mistake' comment; TypeScript infers string | null [web:12]
   const [status, setStatus] = useState('verifying'); // 'verifying', 'success', 'error'
 
   useEffect(() => {
@@ -18,18 +19,21 @@ function Verify() {
     const verifyEmail = async () => {
       try {
         // Use GET with params (matches your backend req.query.token pattern from memories) [cite:9]
-              const response = await axios.get(`${import.meta.env.VITE_LOCAL_API_URL}/api/verify`, 
-       {params: {token}}  ,  // Second arg = body data → req.body = 
-          // { token: '...' }
-          {           // Third arg = config (optional)
-            headers: { 'Content-Type': 'application/json' }
-          }
-        );
+       const response = await axios.get(`${import.meta.env.VITE_LOCAL_API_URL}/api/verify`, 
+      { params:{token},  // Second arg = body data → req.body = 
+         headers:{'Content-Type': 'application/json'}
+          
+      });
 
-        console.log('Email verification successful:', response.data);
-        setStatus('success');
-        if(status === 'success') {
-        setTimeout(() => navigate('/login'), 2000);} // Auto-redirect after success [cite:1]
+        console.log('Email verification successful:',response.data);
+  
+       if (response.status === 201 || response.status === 200) {
+           setStatus('success');
+  // सीधे setTimeout चलाएं, condition के अंदर नहीं
+          setTimeout(() => {
+        navigate('/login');
+       }, 2000);
+} // Auto-redirect after success [cite:1]
       } catch (error) {
         console.error('Error during email verification:', error.response?.data || error.message);
         setStatus('error');
@@ -37,13 +41,13 @@ function Verify() {
     };
 
     verifyEmail();
-  }, [token]); // Fixed: Proper dependency array (no extra }, [] syntax); include navigate to satisfy ESLint [web:13][web:16]
+  }, [token] ); // Fixed: Proper dependency array (no extra }, [] syntax); include navigate to satisfy ESLint [web:13][web:16]
 
   const handleOk = () => {
     if (status === 'success') {
       navigate('/login');
     }
-    navigate('/login');
+    // navigate('/login');
   };
 
   return (

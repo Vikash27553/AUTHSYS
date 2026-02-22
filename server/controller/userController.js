@@ -4,6 +4,9 @@ import jwt from "jsonwebtoken";
 import { verifyEmail } from "../nodemail/verifyEmail.js";
 import Session from "../model/SessionModel.js";
 import { sendotpmail } from "../nodemail/SendotpMail.js";
+import dotenv from "dotenv";
+
+dotenv.config(); 
 
 
 
@@ -25,20 +28,25 @@ export const registerUser = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = new User({ name, email, password: hashedPassword });
-     await newUser.save();
+   
 
-    const token = jwt.sign({ id:newUser._id }, process.env.JWT_SECRET, {
+    const token =  jwt.sign({ id:newUser._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
+
     });
     
     newUser.token = token;
 
 
-    await  newUser.save();
-     await  verifyEmail(token, email);
-
-
-    res.status(201).json({ message: "User registered successfully", newUser });
+   await newUser.save();
+try {
+    await verifyEmail(token, email); // Ensure karein ye function imported hai
+} catch (mailError) {
+    console.error("Mail Error:", mailError.message);
+    // User save ho gaya hai, bas email nahi gaya. 
+    // Isliye 500 error mat bhejna, success hi bhejna.
+}
+return res.status(201).json({ message: "User registered successfully. Check email.", newUser });
     
   } catch (error) {
     console.error(error);
@@ -52,7 +60,7 @@ export const verification = async (req, res) => {
     // req.query.token catches the email link (?token=...)
     // authHeader catches standard API calls from a frontend
     const authHeader = req.headers.authorization;
-    let token = req.query.token; 
+    let token =  await req.query.token; 
 
     if (authHeader) {
       token = authHeader.split(" ")[1];
@@ -64,17 +72,18 @@ export const verification = async (req, res) => {
     }
 
     // 2. Verify the token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded =  jwt.verify(token, process.env.JWT_SECRET);
     
     // 3. Database operations
     const user = await User.findById(decoded.id);
+
     
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     if (user.isVerfied) {
-      return res.status(400).json({ message: "User already verified" });
+      return res.status(200).json({ message: "User already verified" });
     }
 
     // 4. Update and Save
@@ -84,8 +93,8 @@ export const verification = async (req, res) => {
     // Respond with 'user' (the data), not 'User' (the Model)
     // Correct way for cross-origin (Backend -> Frontend) 
       //  res.redirect(`${process.env.LOCAL_FRONTEND_URL}/login?isVerfied=true`);
-      res.status(200).json({ message: "Email verified successfully", user });
-      res.redirect(`${process.env.LOCAL_FRONTEND_URL}/login?isVerfied=true`); // Redirect to frontend with query param for toast trigger
+     return res.status(201).json({ message: "Email verified successfully", user });
+      // res.redirect(`${process.env.LOCAL_FRONTEND_URL}/login?isVerfied=true`); // Redirect to frontend with query param for toast trigger
 
     // ;
 
