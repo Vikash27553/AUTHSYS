@@ -14,5 +14,6 @@ router.post('/forgot', forgotpassword  );
 router.post('/verifyotp', verifyOtp);
 router.post('/reset', changePassword );
 
+
 export default router;
 

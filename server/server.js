@@ -51,3 +51,7 @@ app.get('/' , (req, res) => {
 
 app.use('/api',userRoutes);
 
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is healthy');
+});
+

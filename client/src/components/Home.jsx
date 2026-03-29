@@ -92,6 +92,7 @@ function Home() {
       {/* Page Content */}
       <main className="p-10 text-center">
          <h1 className="text-3xl font-bold text-gray-800">Welcome to the Dashboard</h1>
+         
       </main>
     </div>
   );
