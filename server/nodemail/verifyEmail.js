@@ -10,10 +10,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 dotenv.config();
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const verifyEmail = async (token, email) => {
     // Check token early
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    if (!process.env.RESEND_API_KEY) {
+        console.error("CRITICAL: RESEND_API_KEY is missing from process.env!");
+    }
+
     if (!token) {
         throw new Error('No token provided');
     }
