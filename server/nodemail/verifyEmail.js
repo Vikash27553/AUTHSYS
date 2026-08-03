@@ -25,6 +25,9 @@ export const verifyEmail = async (token, email) => {
         const verificationLink = `${process.env.LOCAL_FRONTEND_URL}/verify?token=${token}`;
         const htmlToSend = template({ verificationLink, name: email, appName: "Authsystem" });
 
+
+        //nodemailer configuration start
+
         // const transporter = nodemailer.createTransport({
         //   service: 'gmail',
         //     host: "smtp.gmail.com",
@@ -48,9 +51,11 @@ export const verifyEmail = async (token, email) => {
 
         // // Nodemailer supports promises, no need for manual 'new Promise' wrapper
         // const result = await transporter.sendMail(info);
+        // console.log("Email sent successfully", result.messageId);
+        // return result;
 
 const { data, error } = await resend.emails.send({
-    from: 'AUTHSYS <onboarding@resend.dev>',
+    from: 'AUTHSYS <noreply@vikashkaushik.shop>',
     to: email,
     subject: "Verify your email for Authsystem",
     text: `Hello, please verify your email: ${verificationLink}`,
@@ -70,7 +75,13 @@ return data;
         console.error("Error sending verification email:", error);
         throw error; 
     }
-};
 
 
+    // } catch (error) {
+    //     console.error("Error sending verification email:", error);
+    //     throw error; 
+    // }
+
+
+}
 
